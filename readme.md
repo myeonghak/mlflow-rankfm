@@ -186,6 +186,8 @@ alpha가 증가함에 따라 MRR이 감소하는 경향을 보이는 것을 확�
 
 MLflow는 이렇게 완성된 모델을 API로 제공하는 기능을 제공합니다. 여기에서는 [MLflow Models](https://mlflow.org/docs/latest/models.html#models)의 기능으로 추천 결과를 서빙하는 방법에 대해 실습합니다.  
 
+<br>
+
 1) **serve.py 실행**
 
 먼저, 다음의 커맨드를 실행합니다.
@@ -194,8 +196,9 @@ MLflow는 이렇게 완성된 모델을 API로 제공하는 기능을 제공합�
 >> python serve.py
 ```
 
+<br>
+
 **(optional: rankfm package error 발생시 아래와 같이 처리해 주세요.)**
-2) **conda.yaml 파일 수정**
 
 생성된 폴더로 이동합니다. `77b3d67a709e49549563ff585ddd5187`라고 생성된 폴더는 실행마다 무작위하게 생성되는 폴더명입니다.  
 본인의 폴더명은 demo 디렉터리 아래에 있는 mlruns 하위에서 확인할 수 있습니다.  
@@ -206,13 +209,18 @@ MLflow는 이렇게 완성된 모델을 API로 제공하는 기능을 제공합�
 pip 아래에 rankfm 패키지를 추가해 주면 해결됩니다.  
 
 
-3) **mlflow models 실행**
+<br>
+
+
+2) **mlflow models 실행**
 
 ``` bash
 >> mlflow models serve -m ${PWD}/mlruns/0/e4b251d575b84ab3ab947bed86b0c9ca/artifacts/example_mlflow_model/ -h 0.0.0.0 -p 8886
 ```
+<br>  
 
-4) **API 호출**  
+
+3) **API 호출**  
 
 
 새로운 터미널을 열어, 도커 컨테이너 안에서 다음 커맨드를 실행합니다.  
@@ -224,9 +232,15 @@ pip 아래에 rankfm 패키지를 추가해 주면 해결됩니다.
 
 >> curl -X POST -H "Content-Type:application/json-numpy-split" --data '{"index":[0],"data":[1],"columns":[0]}' http://0.0.0.0:8886/invocations
 
-```
+```  
 
-5) **결과 확인**
+
+<br>
+
+
+4) **결과 확인**  
+
+
 ```bash
 [{"title": "Toy Story (1995)", "genres": "Animation|Children's|Comedy"}, {"title": "Babe (1995)", "genres": "Children's|Comedy|Drama"}, {"title": "Shawshank Redemption, The (1994)", "genres": "Drama"}, {"title": "Lion King, The (1994)", "genres": "Animation|Children's|Musical"}, {"title": "Aladdin (1992)", "genres": "Animation|Children's|Comedy|Musical"}, {"title": "Snow White and the Seven Dwarfs (1937)", "genres": "Animation|Children's|Musical"}, {"title": "Beauty and the Beast (1991)", "genres": "Animation|Children's|Musical"}, {"title": "Wizard of Oz, The (1939)", "genres": "Adventure|Children's|Drama|Musical"}]
 ```
