@@ -1,0 +1,3 @@
+mlflow
+cloudpickle==1.6.0
+rankfm==0.2.5

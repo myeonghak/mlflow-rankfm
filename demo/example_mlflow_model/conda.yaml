@@ -1,0 +1,10 @@
+channels:
+- conda-forge
+dependencies:
+- python=3.7.10
+- pip
+- pip:
+  - mlflow
+  - cloudpickle==1.6.0
+  - rankfm==0.2.5
+name: mlflow-env

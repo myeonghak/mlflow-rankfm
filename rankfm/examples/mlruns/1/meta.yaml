@@ -1,0 +1,4 @@
+artifact_location: ./mlflow-run
+experiment_id: '1'
+lifecycle_stage: active
+name: campus_recruitment_experiments_v2
